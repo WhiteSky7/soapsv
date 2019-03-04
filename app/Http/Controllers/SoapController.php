@@ -26,7 +26,7 @@ class SoapController extends Controller
 
     public function client() {
         
-            $client_option = array(
+        $client_option = array(
                 'uri' => 'App/Http/Controllers/SoapControllers',
             'location' => 'http://127.0.0.1:8000/server');
            
