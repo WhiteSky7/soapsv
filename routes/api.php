@@ -13,7 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post("/soap" , "SoapController@server")
+
+
+
+
+
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

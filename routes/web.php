@@ -11,6 +11,9 @@
 |
 */
 
+
+Route::any('/server', 'SoapController@server');
+Route::post('/client', 'SoapController@hello');
 Route::get('/', function () {
     return view('welcome');
 });

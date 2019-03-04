@@ -3,38 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use App\Http\Controllers\Controller;
+
 
 class SoapController extends Controller
 {
     
+    public function __construct() {
+        ini_set('soap.wsdl_cache_enabled', 0);
+        ini_set('soap.wsdl_cache_ttl', 0);
+        ini_set('default_socket_timeout', 300);
+        ini_set('max_execution_time', 0);
+    }
     
-       /**
-     * @Route("/soap")
-     */
-    public function server(calculate $calculate)
-    {
-        $soapServer = new \SoapServer('/path/to/hello.wsdl');
-        $soapServer->addFunction($calculate);
-
-        $response = new Response();
-        $response->headers->set('Content-Type', 'text/xml; charset=ISO-8859-1');
-
-        ob_start();
-        $soapServer->handle();
-        $response->setContent(ob_get_clean());
-
-        return $response;
-
+    
+    public function server() {
+        echo  'hello world';
 
     }
-    public function calculate($city, $name, $date)
-    {
+    
+
+
+    public function client() {
+        
+            $client_option = array(
+                'uri' => 'App/Http/Controllers/SoapControllers',
+            'location' => 'http://127.0.0.1:8000/server');
+           
+        
+        $client= New SoapClient(Null, $client_option);
+        
+        $client->__soapCall(hello(), $hello_params);
+
+        return $client;
+        
+
+    }
 
 
 
 
+    public function hello($name) {
+        echo "hello {$name}";
+            var_dump();
     }
 
 
